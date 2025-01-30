@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Information</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <h1>Explore the Internet!</h1>
+    </div>
+    <h1>What would you like to do?</h1>
+    
+    <form method="POST" class="Form">
+        <label for="task">Select Task:</label>
+        <select id="task" name="task">
+            <option value="Check Internet Speed">Check Internet Speed</option>
+            <option value="Find Local IP Address">Find Local IP Address</option>
+            <option value="Ping a Website">Ping a Website</option>
+            <option value="Show Network Configurations">Show Network Configurations</option>
+            <option value="Network Statistics">Network Statistics</option>
+            <option value="Perform DNS Lookup (nslookup)">Perform DNS Lookup (nslookup)</option>
+            <option value="Trace Route to Website">Trace Route to Website</option>
+        </select>
+
+        <br><br>
+
+        <!-- Input for website (hidden by default) -->
+        <div id="website_input" style="display:none;">
+            <label for="website">Enter Website (for Ping):</label>
+            <input type="text" id="website" name="website" placeholder="e.g., google.com">
+        </div>
+
+        <br>
+        <button type="submit">Run</button>
+    </form>
+    
+    {% if result %}
+    <h2>Result:</h2>
+    <div class="{% if 'Failed' in result %}error{% else %}success{% endif %}">
+        <pre>{{ result }}</pre>
+    </div>
+{% endif %}
+
+    <script>
+        // Show/hide the website input field when 'Ping a Website' is selected
+        document.getElementById('task').addEventListener('change', function() {
+            var task = this.value;
+            var websiteInput = document.getElementById('website_input');
+            if (task === 'Ping a Website' || task=="Perform DNS Lookup (nslookup)" || task=="Trace Route to Website") {
+                websiteInput.style.display = 'block';
+            } else {
+                websiteInput.style.display = 'none';
+            }
+        });
+    </script>
+    
+
+</body>
+</html>
