@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
     margin: 0;
     padding: 0;
@@ -177,3 +178,16 @@ select {
         transform: translateX(0);
     }
 }
+=======
+/* *{
+	text-align: center;
+	
+}
+.Form{
+	text-align: center;
+}
+.nav{
+	background-color: rgb(228, 145, 38);
+	text-align: center;
+} */
+>>>>>>> 876766822669b28b3f88b8a6c88eac2189eeca7e

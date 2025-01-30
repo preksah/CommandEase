@@ -19,14 +19,20 @@
             <option value="Find Local IP Address">Find Local IP Address</option>
             <option value="Ping a Website">Ping a Website</option>
             <option value="Show Network Configurations">Show Network Configurations</option>
+<<<<<<< HEAD
             <option value="Network Statistics">Network Statistics</option>
             <option value="Perform DNS Lookup (nslookup)">Perform DNS Lookup (nslookup)</option>
             <option value="Trace Route to Website">Trace Route to Website</option>
+=======
+>>>>>>> 876766822669b28b3f88b8a6c88eac2189eeca7e
         </select>
 
         <br><br>
 
+<<<<<<< HEAD
         <!-- Input for website (hidden by default) -->
+=======
+>>>>>>> 876766822669b28b3f88b8a6c88eac2189eeca7e
         <div id="website_input" style="display:none;">
             <label for="website">Enter Website (for Ping):</label>
             <input type="text" id="website" name="website" placeholder="e.g., google.com">
@@ -37,6 +43,7 @@
     </form>
     
     {% if result %}
+<<<<<<< HEAD
     <h2>Result:</h2>
     <div class="{% if 'Failed' in result %}error{% else %}success{% endif %}">
         <pre>{{ result }}</pre>
@@ -57,5 +64,12 @@
     </script>
     
 
+=======
+        <h2>Result:</h2>
+        <pre>{{ result }}</pre>
+    {% endif %}
+
+    <script src="script.js"></script>
+>>>>>>> 876766822669b28b3f88b8a6c88eac2189eeca7e
 </body>
 </html>

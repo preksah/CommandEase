@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import speedtest
 import socket
 import subprocess
+<<<<<<< HEAD
 import shlex
 import sys
 
@@ -16,11 +17,22 @@ def home():
         task = request.form.get("task")  # Get the task the user selected
         
         # Check which task was selected and run the appropriate function
+=======
+
+app = Flask(__name__)
+
+@app.route("/", methods=["GET", "POST"])
+def home():
+    if request.method == "POST":
+        task = request.form.get("task")
+        
+>>>>>>> 876766822669b28b3f88b8a6c88eac2189eeca7e
         if task == "Check Internet Speed":
             result = get_internet_speed()
         elif task == "Find Local IP Address":
             result = get_local_ip()
         elif task == "Ping a Website":
+<<<<<<< HEAD
             website = request.form.get("website")  # Get the website URL entered by the user
             if website:
                 result = ping_website(website)
@@ -130,5 +142,38 @@ def traceroute(website):
         return "The traceroute command is not found. Ensure it's installed on your system."  # If traceroute is missing
 
 # Run the Flask app in debug mode
+=======
+            website = request.form.get("website")
+            result = ping_website(website)
+        elif task == "Show Network Configurations":
+            result = get_network_config()
+        else:
+            result = "Invalid option selected"
+        
+        return render_template("index.html", result=result)
+    
+    return render_template("index.html")
+
+def get_internet_speed():
+    st = speedtest.Speedtest()
+    st.get_best_server()
+    download_speed = st.download() / 1_000_000  # in Mbps
+    upload_speed = st.upload() / 1_000_000      # in Mbps
+    ping = st.results.ping
+    
+    return f"Download Speed: {round(download_speed, 2)} Mbps, Upload Speed: {round(upload_speed, 2)} Mbps, Ping: {ping} ms"
+
+def get_local_ip():
+    return socket.gethostbyname(socket.gethostname())
+
+def ping_website(website):
+    response = subprocess.run(["ping", website], capture_output=True, text=True)
+    return response.stdout
+
+def get_network_config():
+    response = subprocess.run(["ipconfig"], capture_output=True, text=True)
+    return response.stdout
+
+>>>>>>> 876766822669b28b3f88b8a6c88eac2189eeca7e
 if __name__ == "__main__":
     app.run(debug=True)
